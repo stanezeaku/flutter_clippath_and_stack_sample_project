@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test_index/utilities/constants.dart';
-
-
+import 'package:google_fonts/google_fonts.dart';
 
 class MobileViewPage extends StatefulWidget {
-  const MobileViewPage({Key? key, }) : super(key: key);
-
-
+  const MobileViewPage({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MobileViewPage> createState() => _MobileViewPageState();
@@ -17,87 +16,87 @@ class _MobileViewPageState extends State<MobileViewPage> {
   int tabID = 1;
   @override
   Widget build(BuildContext context) {
-    return  SingleChildScrollView(
-          child: Container(
-            color: primaryColor,
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                const SizedBox(
-                  width: 320,
-                  height: 100,
-                  child: Text(
-                    'Deine Job Website',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 42,
-                    ),
-                  ),
-                ),
-                SvgPicture.asset(
-                  'assets/images/undraw_agreement_aajr.svg',
-                  fit: BoxFit.fill,
-                ),
-                Container(
-                  height: 130,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: borderColor),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset:
-                            const Offset(3, 3), // changes position of shadow
-                      ),
-                    ],
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
-                    ),
-                    gradient: const LinearGradient(
-                      colors: [Colors.white, Colors.white],
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [Color(0xFF319795), Color(0xFF3182CE)]),
-                        ),
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            primary: Colors.transparent,
-                            onPrimary: Colors.white,
-                            minimumSize: const Size.fromHeight(50),
-                            shape: const RoundedRectangleBorder(),
-                          ),
-                          child: const Text(
-                            'Kostenlos Registrieren',
-                            style: TextStyle(
-                                fontFamily: 'medium',
-                                fontSize: 16,
-                                color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                _buildBodySwitch(),
-              ],
+    return SingleChildScrollView(
+      child: Container(
+        color: primaryColor,
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
             ),
-          ),
-        );
+            SizedBox(
+              width: 320,
+              height: 100,
+              child: Text(
+                'Deine Job Website',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.lato(
+                  fontWeight: medium,
+                  fontSize: 42,
+                ),
+              ),
+            ),
+            SvgPicture.asset(
+              'assets/images/undraw_agreement_aajr.svg',
+              fit: BoxFit.fill,
+            ),
+            Container(
+              height: 130,
+              decoration: BoxDecoration(
+                border: Border.all(color: borderColor),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(3, 3), // changes position of shadow
+                  ),
+                ],
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+                gradient: const LinearGradient(
+                  colors: [Colors.white, Colors.white],
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Center(
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      gradient: LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [Color(0xFF319795), Color(0xFF3182CE)]),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        elevation: 0,
+                        primary: Colors.transparent,
+                        onPrimary: Colors.white,
+                        minimumSize: const Size.fromHeight(50),
+                        shape: const RoundedRectangleBorder(),
+                      ),
+                      child: Text(
+                        'Kostenlos Registrieren',
+                        style: GoogleFonts.lato(
+                            fontWeight: semiBold,
+                            fontSize: 16,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            _buildBodySwitch(),
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _buildSegment() {
@@ -196,9 +195,9 @@ class _MobileViewPageState extends State<MobileViewPage> {
   }
 
   segmentText(val) {
-    return TextStyle(
+    return GoogleFonts.lato(
         fontSize: 14,
-        fontFamily: tabID == val ? 'semi-bold' : 'regular',
+        fontWeight: semiBold,
         color: tabID == val ? Colors.white : textColor);
   }
 
@@ -208,7 +207,7 @@ class _MobileViewPageState extends State<MobileViewPage> {
         _buildSegment(),
         if (tabID == 1)
           buildBody(
-            title: 'Drei einfache Schritte zur vermittlung neuer Mitarbeiter',
+            title: 'Drei einfache Schritte zu vermittlung neuer Mitarbeiter',
             subTitleOne: 'Erstellen dein Lebenslauf',
             subTitleTwo: 'Erstellen dein Lebenslauf',
             subTitleThree: 'Mit nur einem Klick bewerben',
@@ -257,143 +256,205 @@ class _MobileViewPageState extends State<MobileViewPage> {
     );
   }
 
-  SizedBox boxThree(String subTitleThree, String imageThree) {
-    return SizedBox(
-      child: Column(
-        children: [
-          
-         
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              const Text(
-                '3.',
-                style: TextStyle(
-                  fontSize: 130,
-                  color: boxTextColor
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(bottom: 26),
-                
-                width: 148,
-                height: 38,
-                child: Text(
-                  subTitleThree,
-                  style: const TextStyle(
-                    fontSize: 15.75,
-                    color: boxTextColor
-                  ),
-                ),
-              )
-            ],
+  Widget boxThree(String subTitleThree, String imageThree) {
+    return Stack(
+      alignment: AlignmentDirectional.topStart,
+      children: [
+        Positioned(
+          left: -50,
+          top: -50,
+          child: Container(
+            height: 308,
+            width: 308,
+            decoration:
+                const BoxDecoration(shape: BoxShape.circle, color: circleColor),
           ),
-           SvgPicture.asset(imageThree,
-            fit: BoxFit.fill,
-          ),
-          const SizedBox(
-            height: 50,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container boxTwo(String subTitleTwo, String imageTwo) {
-    return Container(
-          color: primaryColor,
-        child: Column(
+        ),
+        Column(
           children: [
-            
-           
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text(
-                  '2.',
-                  style: TextStyle(
-                    fontSize: 130,
-                    color: boxTextColor
-                  ),
+                Text(
+                  '3.',
+                  style: GoogleFonts.lato(
+                      fontSize: 130, color: boxTextColor, fontWeight: regular),
                 ),
                 Container(
                   margin: const EdgeInsets.only(bottom: 26),
-                  
                   width: 148,
                   height: 38,
                   child: Text(
-                    subTitleTwo,
-                    style: const TextStyle(
-                      fontSize: 15.75,
-                      color: boxTextColor
-                    ),
+                    subTitleThree,
+                    style: GoogleFonts.lato(
+                        fontSize: 15.75,
+                        color: boxTextColor,
+                        fontWeight: regular),
                   ),
                 )
               ],
             ),
-             SvgPicture.asset(imageTwo,
+            SvgPicture.asset(
+              imageThree,
               fit: BoxFit.fill,
             ),
             const SizedBox(
-              height: 20,
+              height: 50,
             ),
           ],
         ),
-      );
+      ],
+    );
+  }
+
+  Widget boxTwo(String subTitleTwo, String imageTwo) {
+    return Column(
+      children: [
+        ClipPath(
+          clipper: CustomClipPath(),
+          child: Container(
+            padding: const EdgeInsets.only(top: 30, bottom: 40),
+            color: primaryColor,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '2.',
+                      style: GoogleFonts.lato(
+                        fontSize: 130,
+                        fontWeight: regular,
+                        color: boxTextColor,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 26),
+                      width: 184,
+                      height: 38,
+                      child: Text(
+                        subTitleTwo,
+                        style: GoogleFonts.lato(
+                          fontSize: 15.75,
+                          fontWeight: regular,
+                          color: boxTextColor,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SvgPicture.asset(
+                  imageTwo,
+                  fit: BoxFit.fill,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   SizedBox boxOne(String title, String subTitleOne) {
     return SizedBox(
-          child: Column(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 50,
+            width: 280,
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.lato(
+                fontWeight: medium,
+                color: pageViewTitleColor,
+                fontSize: 21,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Stack(
+            alignment: AlignmentDirectional.bottomStart,
+
             children: [
-              SizedBox(
-                height: 50,
-                width: 280,
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: pageViewTitleColor,
-                    fontSize: 21,
-                  ),
-                ),
+              Positioned(
+                left: -85,
+                bottom: -60,
+                child: Container(
+                          height: 308,
+                          width: 308,
+                          decoration:
+                  const BoxDecoration(shape: BoxShape.circle, color: circleColor),
+                        ),
               ),
-              SvgPicture.asset(
-                'assets/images/undraw_Profile_data_re_v81r.svg',
-                fit: BoxFit.fill,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.end,
+              Column(
                 children: [
-                  const Text(
-                    '1.',
-                    style: TextStyle(
-                      fontSize: 130,
-                      color: boxTextColor
-                    ),
+                  SvgPicture.asset(
+                    'assets/images/undraw_Profile_data_re_v81r.svg',
+                    fit: BoxFit.fill,
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 26),
-                    width: 148,
-                    height: 38,
-                    child: Text(
-                      subTitleOne,
-                      style: const TextStyle(
-                        fontSize: 15.75,
-                        color: boxTextColor
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '1.',
+                        style: GoogleFonts.lato(
+                          fontSize: 130,
+                          fontWeight: regular,
+                          color: boxTextColor,
+                        ),
                       ),
-                    ),
-                  )
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 26),
+                        width: 184,
+                        height: 38,
+                        child: Text(
+                          subTitleOne,
+                          style: GoogleFonts.lato(
+                            fontSize: 15.75,
+                            color: boxTextColor,
+                            fontWeight: regular,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ],
-              ),
-              const SizedBox(
-                height: 20,
               ),
             ],
           ),
-        );
+          
+        ],
+      ),
+    );
+  }
+}
+
+class CustomClipPath extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path0 = Path();
+    path0.moveTo(size.width*0.0003750,size.height*0.9971000);
+    path0.lineTo(0,0);
+    path0.quadraticBezierTo(size.width*0.3240125,size.height*-0.2367000,size.width*0.4385375,size.height*0.0021250);
+    path0.quadraticBezierTo(size.width*0.5855375,size.height*0.1340750,size.width,0);
+    path0.lineTo(size.width*1.0003750,size.height*0.7901750);
+    path0.quadraticBezierTo(size.width*0.8880500,size.height*1.0013000,size.width*0.4105375,size.height*0.9970000);
+    path0.quadraticBezierTo(size.width*0.0299500,size.height*1.1465250,size.width*0.0003750,size.height*0.9971000);
+    path0.close();
+
+
+
+    return path0;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }

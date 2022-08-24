@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test_index/utilities/constants.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WebViewPage extends StatefulWidget {
   const WebViewPage({Key? key}) : super(key: key);
@@ -14,82 +15,83 @@ class _WebViewPageState extends State<WebViewPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        color: primaryColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    const SizedBox(
-                      width: 320,
-                      height: 156,
-                      child: Text(
-                        'Deine Job Website',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 65,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ClipPath(
+            clipper: CustomClipPathHead(),
+            child: Container(
+              padding: const EdgeInsets.only(bottom: 25.0, top: 30),
+              color: primaryColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: 320,
+                        height: 156,
+                        child: Text(
+                          'Deine Job Website',
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.lato(
+                            fontWeight: bold,
+                            fontSize: 65,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      width: 320,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        gradient: LinearGradient(
-                            begin: Alignment.centerLeft,
-                            end: Alignment.centerRight,
-                            colors: [Color(0xFF319795), Color(0xFF3182CE)]),
+                      const SizedBox(
+                        height: 20,
                       ),
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          elevation: 0,
-                          primary: Colors.transparent,
-                          onPrimary: Colors.white,
-                          minimumSize: const Size.fromHeight(50),
-                          shape: const RoundedRectangleBorder(),
+                      Container(
+                        width: 320,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          gradient: LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [Color(0xFF319795), Color(0xFF3182CE)]),
                         ),
-                        child: const Text(
-                          'Kostenlos Registrieren',
-                          style: TextStyle(
-                              fontFamily: 'medium',
-                              fontSize: 16,
-                              color: Colors.white),
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            elevation: 0,
+                            primary: Colors.transparent,
+                            onPrimary: Colors.white,
+                            minimumSize: const Size.fromHeight(50),
+                            shape: const RoundedRectangleBorder(),
+                          ),
+                          child: Text(
+                            'Kostenlos Registrieren',
+                            style: GoogleFonts.lato(
+                                fontWeight: semiBold,
+                                fontSize: 16,
+                                color: Colors.white),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                Container(
-                  margin: const EdgeInsets.all(20),
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.white),
-                  clipBehavior: Clip.hardEdge,
-                  child: SvgPicture.asset(
-                    'assets/images/undraw_agreement_aajr.svg',
-                    fit: BoxFit.contain,
+                    ],
                   ),
-                ),
-              ],
+                  Container(
+                    margin: const EdgeInsets.all(20),
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.white),
+                    clipBehavior: Clip.hardEdge,
+                    child: SvgPicture.asset(
+                      'assets/images/undraw_agreement_aajr.svg',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            _buildBodySwitch(),
-           
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          _buildBodySwitch(),
+        ],
       ),
     );
   }
@@ -192,7 +194,7 @@ class _WebViewPageState extends State<WebViewPage> {
   segmentText(val) {
     return TextStyle(
         fontSize: 14,
-        fontFamily: tabID == val ? 'semi-bold' : 'regular',
+        fontWeight: semiBold,
         color: tabID == val ? Colors.white : textColor);
   }
 
@@ -204,7 +206,7 @@ class _WebViewPageState extends State<WebViewPage> {
           _buildSegment(),
           if (tabID == 1)
             buildBody(
-              title: 'Drei einfache Schritte zur vermittlung neuer Mitarbeiter',
+              title: 'Drei einfache Schritte zu vermittlung neuer Mitarbeiter',
               subTitleOne: 'Erstellen dein Lebenslauf',
               subTitleTwo: 'Erstellen dein Lebenslauf',
               subTitleThree: 'Mit nur einem Klick bewerben',
@@ -229,7 +231,9 @@ class _WebViewPageState extends State<WebViewPage> {
               imageTwo: 'assets/images/undraw_job_offers_kw5d.svg',
               imageThree: 'assets/images/undraw_business_deal_cpi9.svg',
             ),
-             const SizedBox(height: 30,)
+          const SizedBox(
+            height: 30,
+          )
         ],
       ),
     );
@@ -260,23 +264,44 @@ class _WebViewPageState extends State<WebViewPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.end,
+          Stack(
+            alignment: AlignmentDirectional.topStart,
             children: [
-              const Text(
-                '3.',
-                style: TextStyle(fontSize: 130, color: boxTextColor),
-              ),
               Container(
-                margin: const EdgeInsets.only(bottom: 26),
-                width: 148,
-                height: 38,
-                child: Text(
-                  subTitleThree,
-                  style: const TextStyle(fontSize: 15.75, color: boxTextColor),
+                height: 208,
+                width: 208,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: circleColor),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 80.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '3.',
+                      style: GoogleFonts.lato(
+                          fontSize: 100,
+                          color: boxTextColor,
+                          fontWeight: regular),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 26),
+                      width: 148,
+                      height: 38,
+                      child: Text(
+                        subTitleThree,
+                        style: GoogleFonts.lato(
+                          fontSize: 15.75,
+                          color: boxTextColor,
+                          fontWeight: semiBold,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
-              )
+              ),
             ],
           ),
           SvgPicture.asset(
@@ -291,39 +316,51 @@ class _WebViewPageState extends State<WebViewPage> {
     );
   }
 
-  Container boxTwo(String subTitleTwo, String imageTwo) {
-    return Container(
-      color: primaryColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              SvgPicture.asset(
-                imageTwo,
-                fit: BoxFit.fill,
-              ),
-              const SizedBox(
-                width: 50,
-              ),
-              const Text(
-                '2.',
-                style: TextStyle(fontSize: 130, color: boxTextColor),
-              ),
-              Container(
-                margin: const EdgeInsets.only(bottom: 26),
-                width: 148,
-                height: 38,
-                child: Text(
-                  subTitleTwo,
-                  style: const TextStyle(fontSize: 15.75, color: boxTextColor),
+  Widget boxTwo(String subTitleTwo, String imageTwo) {
+    return ClipPath(
+      clipper: CustomClipPath(),
+      child: Container(
+        padding: const EdgeInsets.only(top: 20, bottom: 50),
+        color: primaryColor,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SvgPicture.asset(
+                  imageTwo,
+                  fit: BoxFit.fill,
                 ),
-              )
-            ],
-          ),
-        ],
+                const SizedBox(
+                  width: 50,
+                ),
+                Text(
+                  '2.',
+                  style: GoogleFonts.lato(
+                    fontSize: 100,
+                    color: boxTextColor,
+                    fontWeight: regular,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 0),
+                  width: 351,
+                  height: 38,
+                  child: Text(
+                    subTitleTwo,
+                    style: GoogleFonts.lato(
+                      fontSize: 15.75,
+                      color: boxTextColor,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -338,9 +375,10 @@ class _WebViewPageState extends State<WebViewPage> {
             child: Text(
               title,
               textAlign: TextAlign.center,
-              style: const TextStyle(
+              style: GoogleFonts.lato(
                 color: pageViewTitleColor,
                 fontSize: 21,
+                fontWeight: medium,
               ),
             ),
           ),
@@ -350,29 +388,51 @@ class _WebViewPageState extends State<WebViewPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.end,
+              Stack(
+                alignment: AlignmentDirectional.bottomStart,
+                fit: StackFit.passthrough,
                 children: [
-                  const Text(
-                    '1.',
-                    style: TextStyle(fontSize: 130, color: boxTextColor),
-                  ),
                   Container(
-                    margin: const EdgeInsets.only(bottom: 26),
-                    width: 148,
-                    height: 38,
-                    child: Text(
-                      subTitleOne,
-                      style:
-                          const TextStyle(fontSize: 15.75, color: boxTextColor),
+                    height: 208,
+                    width: 208,
+                    decoration: const BoxDecoration(
+                        shape: BoxShape.circle, color: circleColor),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 60.0, bottom: 40.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          '1.',
+                          style: GoogleFonts.lato(
+                            fontSize: 100,
+                            color: boxTextColor,
+                            fontWeight: regular,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 0),
+                          width: 351,
+                          height: 38,
+                          child: Text(
+                            subTitleOne,
+                            style: GoogleFonts.lato(
+                              fontSize: 15.75,
+                              color: boxTextColor,
+                              fontWeight: medium,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  )
+                  ),
                 ],
               ),
               SvgPicture.asset(
                 'assets/images/undraw_Profile_data_re_v81r.svg',
-                fit: BoxFit.fill,
+                fit: BoxFit.contain,
               ),
             ],
           ),
@@ -382,5 +442,53 @@ class _WebViewPageState extends State<WebViewPage> {
         ],
       ),
     );
+  }
+}
+
+class CustomClipPath extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.moveTo(0, size.height * 0.8940500);
+    path.lineTo(0, size.height * 0.0974000);
+    path.quadraticBezierTo(size.width * 0.2667875, size.height * 0.0456750,
+        size.width * 0.4387125, size.height * 0.0854000);
+    path.quadraticBezierTo(size.width * 0.8881875, size.height * 0.0155500,
+        size.width, size.height * 0.2263500);
+    path.lineTo(size.width, size.height * 0.8308750);
+    path.quadraticBezierTo(size.width * 0.8768000, size.height * 0.9365250,
+        size.width * 0.2958375, size.height * 0.8826000);
+    path.quadraticBezierTo(size.width * 0.1495375, size.height * 0.8965500, 0,
+        size.height * 0.8940500);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
+  }
+}
+
+class CustomClipPathHead extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    Path path = Path();
+    path.moveTo(0, size.height);
+    path.lineTo(0, 0);
+    path.lineTo(size.width, 0);
+    path.lineTo(size.width, size.height * 0.9162000);
+    path.quadraticBezierTo(size.width * 0.6245500, size.height * 0.9248250,
+        size.width * 0.5011875, size.height * 0.9669250);
+    path.quadraticBezierTo(
+        size.width * 0.3767500, size.height * 0.9759750, 0, size.height);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }
