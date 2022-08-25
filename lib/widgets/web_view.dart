@@ -15,82 +15,112 @@ class _WebViewPageState extends State<WebViewPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Stack(
+        alignment: AlignmentDirectional.bottomCenter,
         children: [
-          ClipPath(
-            clipper: CustomClipPathHead(),
-            child: Container(
-              padding: const EdgeInsets.only(bottom: 25.0, top: 30),
-              color: primaryColor,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipPath(
+                clipper: CustomClipPathHead(),
+                child: Container(
+                  padding: const EdgeInsets.only(bottom: 25.0, top: 30),
+                  color: primaryColor,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        width: 320,
-                        height: 156,
-                        child: Text(
-                          'Deine Job Website',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.lato(
-                            fontWeight: bold,
-                            fontSize: 65,
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: 320,
+                            height: 156,
+                            child: Text(
+                              'Deine Job Website',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.lato(
+                                fontWeight: bold,
+                                fontSize: 65,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: 320,
+                            decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15)),
+                              gradient: LinearGradient(
+                                  begin: Alignment.centerLeft,
+                                  end: Alignment.centerRight,
+                                  colors: [
+                                    Color(0xFF319795),
+                                    Color(0xFF3182CE)
+                                  ]),
+                            ),
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                elevation: 0,
+                                primary: Colors.transparent,
+                                onPrimary: Colors.white,
+                                minimumSize: const Size.fromHeight(50),
+                                shape: const RoundedRectangleBorder(),
+                              ),
+                              child: Text(
+                                'Kostenlos Registrieren',
+                                style: GoogleFonts.lato(
+                                    fontWeight: semiBold,
+                                    fontSize: 16,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                       Container(
-                        width: 320,
+                        margin: const EdgeInsets.all(20),
                         decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                          gradient: LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [Color(0xFF319795), Color(0xFF3182CE)]),
-                        ),
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            elevation: 0,
-                            primary: Colors.transparent,
-                            onPrimary: Colors.white,
-                            minimumSize: const Size.fromHeight(50),
-                            shape: const RoundedRectangleBorder(),
-                          ),
-                          child: Text(
-                            'Kostenlos Registrieren',
-                            style: GoogleFonts.lato(
-                                fontWeight: semiBold,
-                                fontSize: 16,
-                                color: Colors.white),
-                          ),
+                            shape: BoxShape.circle, color: Colors.white),
+                        clipBehavior: Clip.hardEdge,
+                        child: SvgPicture.asset(
+                          'assets/images/undraw_agreement_aajr.svg',
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ],
                   ),
-                  Container(
-                    margin: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.white),
-                    clipBehavior: Clip.hardEdge,
-                    child: SvgPicture.asset(
-                      'assets/images/undraw_agreement_aajr.svg',
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              _buildBodySwitch(),
+            ],
+          ),
+          Positioned(
+            bottom: 310,
+            left: 150,
+            child: Center(
+              child: SizedBox(
+                height: 503,
+                width: 307,
+                child: SvgPicture.asset('assets/images/Gruppe1.svg'),
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
-          _buildBodySwitch(),
+          Positioned(
+            bottom: 50,
+            child: Center(
+              child: SizedBox(
+                height: 503,
+                width: 307,
+                child: SvgPicture.asset('assets/images/Gruppe2.svg'),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -252,7 +282,13 @@ class _WebViewPageState extends State<WebViewPage> {
       child: Column(
         children: [
           boxOne(title, subTitleOne),
+          const SizedBox(
+            height: 50,
+          ),
           boxTwo(subTitleTwo, imageTwo),
+          const SizedBox(
+            height: 50,
+          ),
           boxThree(subTitleThree, imageThree)
         ],
       ),
@@ -320,77 +356,73 @@ class _WebViewPageState extends State<WebViewPage> {
     return ClipPath(
       clipper: CustomClipPath(),
       child: Container(
-        padding: const EdgeInsets.only(top: 20, bottom: 50),
+        padding: const EdgeInsets.only(top: 40, bottom: 70, ),
         color: primaryColor,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                SvgPicture.asset(
-                  imageTwo,
-                  fit: BoxFit.fill,
-                ),
-                const SizedBox(
-                  width: 50,
-                ),
-                Text(
-                  '2.',
-                  style: GoogleFonts.lato(
-                    fontSize: 100,
-                    color: boxTextColor,
-                    fontWeight: regular,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(bottom: 0),
-                  width: 351,
-                  height: 38,
-                  child: Text(
-                    subTitleTwo,
-                    style: GoogleFonts.lato(
-                      fontSize: 15.75,
-                      color: boxTextColor,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                )
-              ],
+            SvgPicture.asset(
+              imageTwo,
+              fit: BoxFit.fill,
             ),
+            const SizedBox(
+              width: 50,
+            ),
+            Text(
+              '2.',
+              style: GoogleFonts.lato(
+                fontSize: 100,
+                color: boxTextColor,
+                fontWeight: regular,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 0),
+              width: 351,
+              height: 38,
+              child: Text(
+                subTitleTwo,
+                style: GoogleFonts.lato(
+                  fontSize: 15.75,
+                  color: boxTextColor,
+                  fontWeight: semiBold,
+                ),
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  SizedBox boxOne(String title, String subTitleOne) {
-    return SizedBox(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 50,
-            width: 280,
-            child: Text(
-              title,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.lato(
-                color: pageViewTitleColor,
-                fontSize: 21,
-                fontWeight: medium,
-              ),
+  Widget boxOne(String title, String subTitleOne) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 50,
+          width: 280,
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.lato(
+              color: pageViewTitleColor,
+              fontSize: 21,
+              fontWeight: medium,
             ),
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        ),
+        const SizedBox(
+          height: 30,
+        ),
+        Container(
+          margin: const EdgeInsets.only(left: 50),
+          
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Stack(
                 alignment: AlignmentDirectional.bottomStart,
-                fit: StackFit.passthrough,
                 children: [
                   Container(
                     height: 208,
@@ -399,7 +431,7 @@ class _WebViewPageState extends State<WebViewPage> {
                         shape: BoxShape.circle, color: circleColor),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 60.0, bottom: 40.0),
+                    padding: const EdgeInsets.only(left: 50.0, bottom: 40.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -414,7 +446,7 @@ class _WebViewPageState extends State<WebViewPage> {
                         ),
                         Container(
                           margin: const EdgeInsets.only(bottom: 0),
-                          width: 351,
+                          width: 240,
                           height: 38,
                           child: Text(
                             subTitleOne,
@@ -436,11 +468,11 @@ class _WebViewPageState extends State<WebViewPage> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+      ],
     );
   }
 }
