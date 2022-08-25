@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test_index/utilities/constants.dart';
+import 'package:flutter_test_index/utilities/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WebViewPage extends StatefulWidget {
@@ -100,12 +101,12 @@ class _WebViewPageState extends State<WebViewPage> {
               _buildBodySwitch(),
             ],
           ),
-          Positioned(
-            bottom: 310,
-            left: 150,
+          Positioned.fill(
+            top: 410,
+            right: 350,
             child: Center(
               child: SizedBox(
-                height: 503,
+                height: 303,
                 width: 307,
                 child: SvgPicture.asset('assets/images/Gruppe1.svg'),
               ),
@@ -281,7 +282,13 @@ class _WebViewPageState extends State<WebViewPage> {
       color: Colors.white,
       child: Column(
         children: [
-          boxOne(title, subTitleOne),
+          boxHeader(
+            title,
+          ),
+          boxOne(subTitleOne),
+          const SizedBox(
+            height: 20,
+          ),
           const SizedBox(
             height: 50,
           ),
@@ -356,47 +363,65 @@ class _WebViewPageState extends State<WebViewPage> {
     return ClipPath(
       clipper: CustomClipPath(),
       child: Container(
-        padding: const EdgeInsets.only(top: 40, bottom: 70, ),
+        padding: const EdgeInsets.only(
+          top: 70,
+          bottom: 70,
+        ),
         color: primaryColor,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              imageTwo,
-              fit: BoxFit.fill,
-            ),
-            const SizedBox(
-              width: 50,
-            ),
-            Text(
-              '2.',
-              style: GoogleFonts.lato(
-                fontSize: 100,
-                color: boxTextColor,
-                fontWeight: regular,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 0),
-              width: 351,
-              height: 38,
-              child: Text(
-                subTitleTwo,
-                style: GoogleFonts.lato(
-                  fontSize: 15.75,
-                  color: boxTextColor,
-                  fontWeight: semiBold,
+            Stack(
+              alignment: AlignmentDirectional.topStart,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 100.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      SvgPicture.asset(
+                        imageTwo,
+                        fit: BoxFit.fill,
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      Text(
+                        '2.',
+                        style: GoogleFonts.lato(
+                          fontSize: 100,
+                          color: boxTextColor,
+                          fontWeight: regular,
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(bottom: 0),
+                        width: 351,
+                        height: 38,
+                        child: Text(
+                          subTitleTwo,
+                          style: GoogleFonts.lato(
+                            fontSize: 15.75,
+                            color: boxTextColor,
+                            fontWeight: semiBold,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget boxOne(String title, String subTitleOne) {
+  Widget boxHeader(
+    String title,
+  ) {
     return Column(
       children: [
         SizedBox(
@@ -415,64 +440,70 @@ class _WebViewPageState extends State<WebViewPage> {
         const SizedBox(
           height: 30,
         ),
-        Container(
-          margin: const EdgeInsets.only(left: 50),
-          
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+      ],
+    );
+  }
+
+  Widget boxOne(String subTitleOne) {
+    return Container(
+      margin: Responsive.isSmallWeb(context)
+          ? EdgeInsets.only(
+              left: MediaQuery.of(context).size.width * 0.05,
+            )
+          : EdgeInsets.only(
+              left: MediaQuery.of(context).size.width * 0.15,
+            ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: AlignmentDirectional.bottomStart,
             children: [
-              Stack(
-                alignment: AlignmentDirectional.bottomStart,
-                children: [
-                  Container(
-                    height: 208,
-                    width: 208,
-                    decoration: const BoxDecoration(
-                        shape: BoxShape.circle, color: circleColor),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50.0, bottom: 40.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          '1.',
-                          style: GoogleFonts.lato(
-                            fontSize: 100,
-                            color: boxTextColor,
-                            fontWeight: regular,
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.only(bottom: 0),
-                          width: 240,
-                          height: 38,
-                          child: Text(
-                            subTitleOne,
-                            style: GoogleFonts.lato(
-                              fontSize: 15.75,
-                              color: boxTextColor,
-                              fontWeight: medium,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
+              Container(
+                height: 208,
+                width: 208,
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: circleColor),
               ),
-              SvgPicture.asset(
-                'assets/images/undraw_Profile_data_re_v81r.svg',
-                fit: BoxFit.contain,
+              Padding(
+                padding: const EdgeInsets.only(left: 60.0, bottom: 40.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '1.',
+                      style: GoogleFonts.lato(
+                        fontSize: 100,
+                        color: boxTextColor,
+                        fontWeight: regular,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 0),
+                      width: 240,
+                      height: 38,
+                      child: Text(
+                        subTitleOne,
+                        style: GoogleFonts.lato(
+                          fontSize: 15.75,
+                          color: boxTextColor,
+                          fontWeight: medium,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ],
           ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-      ],
+          SvgPicture.asset(
+            'assets/images/undraw_Profile_data_re_v81r.svg',
+            fit: BoxFit.contain,
+          ),
+        ],
+      ),
     );
   }
 }
