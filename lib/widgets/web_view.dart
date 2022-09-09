@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_test_index/utilities/constants.dart';
-import 'package:flutter_test_index/utilities/responsive.dart';
+import 'package:flutter_clippath_and_stack_sample_project/utilities/constants.dart';
+import 'package:flutter_clippath_and_stack_sample_project/utilities/responsive.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WebViewPage extends StatefulWidget {

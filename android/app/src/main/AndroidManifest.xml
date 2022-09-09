@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_test_index">
+    package="com.example.flutter_clippath_and_stack_sample_project">
    <application
-        android:label="flutter_test_index"
+        android:label="flutter_clippath_and_stack_sample_project"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

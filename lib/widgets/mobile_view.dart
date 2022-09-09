@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_test_index/utilities/constants.dart';
+import 'package:flutter_clippath_and_stack_sample_project/utilities/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MobileViewPage extends StatefulWidget {
@@ -379,17 +379,16 @@ class _MobileViewPageState extends State<MobileViewPage> {
           ),
           Stack(
             alignment: AlignmentDirectional.bottomStart,
-
             children: [
               Positioned(
                 left: -85,
                 bottom: -60,
                 child: Container(
-                          height: 308,
-                          width: 308,
-                          decoration:
-                  const BoxDecoration(shape: BoxShape.circle, color: circleColor),
-                        ),
+                  height: 308,
+                  width: 308,
+                  decoration: const BoxDecoration(
+                      shape: BoxShape.circle, color: circleColor),
+                ),
               ),
               Column(
                 children: [
@@ -428,7 +427,6 @@ class _MobileViewPageState extends State<MobileViewPage> {
               ),
             ],
           ),
-          
         ],
       ),
     );
@@ -439,16 +437,18 @@ class CustomClipPath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path0 = Path();
-    path0.moveTo(size.width*0.0003750,size.height*0.9971000);
-    path0.lineTo(0,0);
-    path0.quadraticBezierTo(size.width*0.3240125,size.height*-0.2367000,size.width*0.4385375,size.height*0.0021250);
-    path0.quadraticBezierTo(size.width*0.5855375,size.height*0.1340750,size.width,0);
-    path0.lineTo(size.width*1.0003750,size.height*0.7901750);
-    path0.quadraticBezierTo(size.width*0.8880500,size.height*1.0013000,size.width*0.4105375,size.height*0.9970000);
-    path0.quadraticBezierTo(size.width*0.0299500,size.height*1.1465250,size.width*0.0003750,size.height*0.9971000);
+    path0.moveTo(size.width * 0.0003750, size.height * 0.9971000);
+    path0.lineTo(0, 0);
+    path0.quadraticBezierTo(size.width * 0.3240125, size.height * -0.2367000,
+        size.width * 0.4385375, size.height * 0.0021250);
+    path0.quadraticBezierTo(
+        size.width * 0.5855375, size.height * 0.1340750, size.width, 0);
+    path0.lineTo(size.width * 1.0003750, size.height * 0.7901750);
+    path0.quadraticBezierTo(size.width * 0.8880500, size.height * 1.0013000,
+        size.width * 0.4105375, size.height * 0.9970000);
+    path0.quadraticBezierTo(size.width * 0.0299500, size.height * 1.1465250,
+        size.width * 0.0003750, size.height * 0.9971000);
     path0.close();
-
-
 
     return path0;
   }

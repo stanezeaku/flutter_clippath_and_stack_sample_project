@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_index/pages/initial_page.dart';
+import 'package:flutter_clippath_and_stack_sample_project/pages/initial_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -21,10 +21,10 @@ class MyApp extends StatelessWidget {
   }
 
   ThemeData _buildTheme() {
-  var baseTheme = ThemeData();
+    var baseTheme = ThemeData();
 
-  return baseTheme.copyWith(
-    textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
-  );
-}
+    return baseTheme.copyWith(
+      textTheme: GoogleFonts.latoTextTheme(baseTheme.textTheme),
+    );
+  }
 }

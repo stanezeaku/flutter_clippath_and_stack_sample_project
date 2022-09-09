@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_index/widgets/mobile_view.dart';
-import 'package:flutter_test_index/widgets/web_view.dart';
-import 'package:flutter_test_index/utilities/constants.dart';
-import 'package:flutter_test_index/utilities/responsive.dart';
+import 'package:flutter_clippath_and_stack_sample_project/widgets/mobile_view.dart';
+import 'package:flutter_clippath_and_stack_sample_project/widgets/web_view.dart';
+import 'package:flutter_clippath_and_stack_sample_project/utilities/constants.dart';
+import 'package:flutter_clippath_and_stack_sample_project/utilities/responsive.dart';
 
 class InitialPage extends StatefulWidget {
   const InitialPage({
@@ -41,7 +41,9 @@ class _InitialPageState extends State<InitialPage> {
               color: Colors.white),
         ),
       ),
-      body: Responsive.isMobile(context) ? const MobileViewPage() : const WebViewPage(),
+      body: Responsive.isMobile(context)
+          ? const MobileViewPage()
+          : const WebViewPage(),
     );
   }
 }
